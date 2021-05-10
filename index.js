@@ -22,7 +22,6 @@ app.get("/user/:name",(req,res)=>{
     const found = users.find((element)=>{
         return element.name===user;
     })
-})
 
 if (found){
     res.status(200);
@@ -31,17 +30,29 @@ if (found){
     res.status(404);
     res.json("user not found");
 }
+})
 
 app.post("/create/user",(req,res)=>{
     const newUser = { name: req.body.name, age: req.body.age };
-})
+
 
 users.push(newUser);
 
 res.status(201);
 
 res.json(newUser);
+})
 
 app.listen(port,()=>{
     console.log(`Example app listening at http://localhost:${port}`);
+})
+
+app.get("/first",(req,res)=>{
+    res.status(200);
+    res.json(users[0]);
+
+})
+
+app.get("/",(req,res)=>{
+    res.json("hello world");
 })
